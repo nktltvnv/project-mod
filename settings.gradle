@@ -1,1 +1,3 @@
 rootProject.name = 'project-mod'
+
+include 'api-gateway'
