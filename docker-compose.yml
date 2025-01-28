@@ -1,0 +1,11 @@
+version: '3.8'
+name: 'project-mod'
+
+services:
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "9080:8080"
