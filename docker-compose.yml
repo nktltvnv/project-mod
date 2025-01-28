@@ -7,5 +7,17 @@ services:
     build:
       context: api-gateway
       dockerfile: Dockerfile
+    environment:
+      - EUREKA_SERVICE_URL=http://service-discovery:8761/eureka
     ports:
       - "9080:8080"
+    depends_on:
+      - service-discovery
+
+  service-discovery:
+    container_name: service-discovery
+    build:
+      context: service-discovery
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
