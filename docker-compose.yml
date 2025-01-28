@@ -9,3 +9,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - "9080:8080"
+
+  service-discovery:
+    container_name: service-discovery
+    build:
+      context: service-discovery
+      dockerfile: Dockerfile
+    ports:
+      - "9081:8080"
