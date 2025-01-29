@@ -2,6 +2,37 @@ version: '3.8'
 name: 'project-mod'
 
 services:
+# Service Discovery
+  service-discovery:
+    container_name: service-discovery
+    build:
+      context: service-discovery
+      dockerfile: Dockerfile
+    ports:
+      - "8762:8761"
+
+# Identity and Access Management
+  keycloak-database:
+    container_name: keycloak-database
+    image: postgres:latest
+    env_file:
+      - .docker/.keycloak-config
+    ports:
+      - "15432:5432"
+
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:latest
+    command:
+      - start-dev
+    env_file:
+      - .docker/.keycloak-config
+    ports:
+      - "9080:8080"
+    depends_on:
+      - keycloak-database
+
+# API Gateway
   api-gateway:
     container_name: api-gateway
     build:
@@ -10,14 +41,7 @@ services:
     environment:
       - EUREKA_SERVICE_URL=http://service-discovery:8761/eureka
     ports:
-      - "9080:8080"
+      - "9081:8080"
     depends_on:
       - service-discovery
-
-  service-discovery:
-    container_name: service-discovery
-    build:
-      context: service-discovery
-      dockerfile: Dockerfile
-    ports:
-      - "8761:8761"
+      - keycloak
