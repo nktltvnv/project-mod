@@ -5,6 +5,7 @@ spring:
   cloud:
     gateway:
       default-filters:
+        - TokenRelay=
         - name: CircuitBreaker
           args:
             name: default
@@ -14,6 +15,24 @@ spring:
             statuses:
               - REQUEST_TIMEOUT
               - SERVICE_UNAVAILABLE
+
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:9080/realms/mod
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: oauth-client
+            client-secret: A578ODWr8zhyk4JZV7Wy2WRYnGY6lN4t
+            authorization-grant-type: authorization_code
+            scope:
+              - openid
+              - email
+              - profile
+              - role
 
 # Service Discovery
 eureka:
