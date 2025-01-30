@@ -21,12 +21,12 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://localhost:9080/realms/mod
+            issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:9080/realms/mod}
         registration:
           keycloak:
             provider: keycloak
-            client-id: oauth-client
-            client-secret: A578ODWr8zhyk4JZV7Wy2WRYnGY6lN4t
+            client-id: api-gateway-client
+            client-secret: JVyf60akqH7xWruqu5vm9wknO55q0Vyc
             authorization-grant-type: authorization_code
             scope:
               - openid
@@ -39,3 +39,8 @@ eureka:
   client:
     service-url:
       defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761/eureka}
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: TRACE

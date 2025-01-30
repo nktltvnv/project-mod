@@ -39,6 +39,7 @@ public class SecurityConfiguration {
                 .logout(logout ->
                         logout.logoutSuccessHandler(logoutSuccessHandler).logoutHandler(logoutHandler))
                 .csrf(Customizer.withDefaults())
+                .cors(ServerHttpSecurity.CorsSpec::disable)
                 .build();
     }
 
@@ -59,7 +60,7 @@ public class SecurityConfiguration {
     public ServerLogoutSuccessHandler logoutSuccessHandler(
             final ReactiveClientRegistrationRepository clientRegistrationRepository) {
         var oidcLogoutSuccessHandler = new OidcClientInitiatedServerLogoutSuccessHandler(clientRegistrationRepository);
-        oidcLogoutSuccessHandler.setPostLogoutRedirectUri("{baseUrl}/test");
+        oidcLogoutSuccessHandler.setPostLogoutRedirectUri("{baseUrl}/mod");
         return oidcLogoutSuccessHandler;
     }
 
