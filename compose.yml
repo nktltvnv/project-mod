@@ -1,7 +1,6 @@
-version: '3.8'
-name: 'project-mod'
-
+name: project-mod
 services:
+
   api-gateway:
     container_name: api-gateway
     build:
