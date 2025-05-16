@@ -1,4 +1,3 @@
 rootProject.name = 'project-mod'
 
 include 'api-gateway'
-include 'service-discovery'
