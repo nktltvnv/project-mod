@@ -1,4 +1,4 @@
-FROM amd64/amazoncorretto:23
+FROM openjdk:24
 
 WORKDIR /app
 

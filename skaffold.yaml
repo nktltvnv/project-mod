@@ -1,0 +1,13 @@
+apiVersion: skaffold/v4beta13
+kind: Config
+metadata:
+  name: project-mod
+build:
+  artifacts:
+    - image: api-gateway
+      context: api-gateway
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - api-gateway/k8s/deployment.yaml

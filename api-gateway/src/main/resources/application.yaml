@@ -14,9 +14,3 @@ spring:
             statuses:
               - REQUEST_TIMEOUT
               - SERVICE_UNAVAILABLE
-
-# Service Discovery
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761/eureka}
